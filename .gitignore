@@ -1,0 +1,6 @@
+*.class
+*.gitignore~
+*.gitattributes~
+*.java~
+*.sql~
+*.un~
