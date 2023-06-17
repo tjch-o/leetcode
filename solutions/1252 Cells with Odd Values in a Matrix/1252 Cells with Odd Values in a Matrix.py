@@ -1,11 +1,9 @@
 def col_increment(matrix, m, n, i, j):
-   # when given the coordinates / specific index
    for col in range(n):
       matrix[i][col] += 1
    return matrix
 
 def row_increment(matrix, m, n, i, j):
-   # when given the coordinates 
    for row in range(m):
       matrix[row][j] += 1
    return matrix
