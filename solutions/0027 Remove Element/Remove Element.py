@@ -1,8 +1,6 @@
-def removeElement(nums,val):
-    # they want O(1) extra memory that means no creating new arrays
-    # how im going to weed out the elements removed without using strings to indicate
+def removeElement(nums, val):
     if not nums:
-        return 0 # nothing to remove
+        return 0 
     
     dont_count = max(nums) + 1
     
