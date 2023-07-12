@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Solution {
-
     ArrayList<ListNode> seen = new ArrayList<>();
 
     public boolean hasCycle(ListNode head) {
