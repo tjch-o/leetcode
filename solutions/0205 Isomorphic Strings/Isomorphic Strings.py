@@ -1,7 +1,7 @@
 def isIsomorphic(s, t):
     n = len(s)
     table = {}
-    
+
     for i in range(n):
         x = s[i]
         y = t[i]

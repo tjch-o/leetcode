@@ -1,15 +1,16 @@
 def convertToBase7(num):
-    if num == 0:
-        return "0"
-    
-    isNegative = num < 0
-    if isNegative:
+    is_negative = num < 0
+
+    if is_negative:
         num = -num
-        
-    result = ""
-    while num != 0:
+
+    result = 0
+    exponent = 0
+    while num // 7 != 0:
         remainder = num % 7
+        result += remainder * 10**exponent
         num = num // 7
-        result += str(remainder)
-    
-    return result[::-1] if not isNegative else "-" + result[::-1]
+        exponent += 1
+
+    result += num * 10**exponent
+    return str(result) if not is_negative else "-" + str(result)

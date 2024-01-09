@@ -17,7 +17,6 @@ class Solution {
                 col -= 1;
             }
         }
-
         return false;
     }
 }

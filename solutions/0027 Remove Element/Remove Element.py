@@ -1,20 +1,19 @@
 def removeElement(nums, val):
-    if not nums:
-        return 0 
-    
-    dont_count = max(nums) + 1
-    
+    count = len(nums)
+
     for i in range(len(nums)):
         if nums[i] == val:
-            nums[i] = dont_count
+            count -= 1
 
-    nums.sort()
+    start = 0
+    end = len(nums) - 1
 
-    number_left = 0
-    for x in nums:
-        if x == dont_count:
-            break
+    # order of elements do not matter
+    while start < end:
+        if nums[start] != val:
+            start += 1
         else:
-            number_left += 1
-
-    return number_left
+            if nums[end] != val:
+                nums[start], nums[end] = nums[end], nums[start]
+            end -= 1
+    return count

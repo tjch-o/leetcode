@@ -5,8 +5,8 @@ class Solution {
         } else if (root.left == null && root.right == null && targetSum == root.val) {
             return true;
         } else {
-            return hasPathSum(root.left, targetSum - root.val) || 
-            hasPathSum(root.right, targetSum - root.val);
+            return hasPathSum(root.left, targetSum - root.val) ||
+                    hasPathSum(root.right, targetSum - root.val);
         }
     }
 }

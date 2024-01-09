@@ -8,6 +8,7 @@ def getRow(rowIndex):
       result = [1]
       
       for i in range(1, len(previous_row)):
-         result.append(previous_row[i - 1] +  previous_row[i])  
+         result.append(previous_row[i - 1] +  previous_row[i])
+         
       result.append(1)
       return result
