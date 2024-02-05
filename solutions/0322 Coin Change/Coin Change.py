@@ -1,4 +1,4 @@
-def coinChange(coins, amount):
+def coin_change(coins, amount):
     table = [0 for i in range(amount + 1)]
 
     for i in range(1, amount + 1):

@@ -21,7 +21,7 @@ class Solution {
             return ;
         }
 
-        // mark this as visited to prevent double counting
+        // mark this as visited to prevent double counting; without this even a visited array won't update correctly
         grid[row][col] = '0';
 
         DFS(row - 1, col, grid, m, n);

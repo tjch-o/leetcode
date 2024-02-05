@@ -1,4 +1,4 @@
-def plusOne(digits):
+def plus_one(digits):
     digits_mapped = list(map(lambda x: str(x), digits))
     digit_string = "".join(digits_mapped)
     digit_int = int(digit_string)

@@ -5,11 +5,11 @@ class LRUCache:
         self.dict = {}
         # stack stores the keys where left is the least used key
         self.stack = []
-        
+
     def set(self, key, value):
         self.stack.append(key)
         self.dict[key] = value
-        
+
     def updateStack(self, key):
         self.stack.remove(key)
         self.stack.append(key)

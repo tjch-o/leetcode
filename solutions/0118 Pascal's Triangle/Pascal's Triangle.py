@@ -1,10 +1,10 @@
-def generate(numRows):
-   if numRows == 1:
+def generate(num_rows):
+   if num_rows == 1:
       return [[1]]
-   elif numRows == 2:
+   elif num_rows == 2:
       return [[1], [1, 1]]
    else:
-      result = generate(numRows - 1)
+      result = generate(num_rows - 1)
       previous_row = result[-1]
       new_row = [1] 
       

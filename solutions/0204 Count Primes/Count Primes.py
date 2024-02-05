@@ -1,4 +1,4 @@
-def countPrimes(n):
+def count_primes(n):
     if n == 0 or n == 1:
         return 0
     

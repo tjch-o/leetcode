@@ -1,4 +1,4 @@
-def productExceptSelf(nums):
+def product_except_self(nums):
     n = len(nums)
     answer = []
     product_left_elements = [1 for _ in range(n)]
