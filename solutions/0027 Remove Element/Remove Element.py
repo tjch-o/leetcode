@@ -1,4 +1,4 @@
-def removeElement(nums, val):
+def remove_element(nums, val):
     count = len(nums)
 
     for i in range(len(nums)):

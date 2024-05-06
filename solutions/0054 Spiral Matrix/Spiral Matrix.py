@@ -1,4 +1,4 @@
-def spiralOrder(matrix):
+def spiral_order(matrix):
     m = len(matrix)
     n = len(matrix[0])
     output = []

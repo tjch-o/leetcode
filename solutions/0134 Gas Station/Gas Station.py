@@ -1,4 +1,4 @@
-def canCompleteCircuit(gas, cost):
+def can_complete_circuit(gas, cost):
     total_gas = 0
     start = 0
 

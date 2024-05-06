@@ -1,10 +1,10 @@
-def getRow(rowIndex):
-   if rowIndex == 0:
+def get_row(row_index):
+   if row_index == 0:
       return [1]
-   elif rowIndex == 1:
+   elif row_index == 1:
       return [1, 1]
    else:
-      previous_row = getRow(rowIndex - 1)
+      previous_row = get_row(row_index - 1)
       result = [1]
       
       for i in range(1, len(previous_row)):

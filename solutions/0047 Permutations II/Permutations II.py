@@ -1,4 +1,4 @@
-def permuteUnique(nums):
+def permute_unique(nums):
     if len(nums) == 0:
         return []
     elif len(nums) == 1:
@@ -7,10 +7,10 @@ def permuteUnique(nums):
         result = []
 
         for i in range(len(nums)):
-            current_element = nums[i]
+            curr = nums[i]
             remaining_lst = nums[:i] + nums[i + 1 :]
-            for p in permuteUnique(remaining_lst):
-                if [current_element] + p not in result:
-                    result.append([current_element] + p)
+            for p in permute_unique(remaining_lst):
+                if [curr] + p not in result:
+                    result.append([curr] + p)
 
         return result

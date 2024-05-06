@@ -1,4 +1,4 @@
-def uniquePaths(m, n):
+def unique_paths(m, n):
     table = [[0 for _ in range(n)] for _ in range(m)]
     table[0][0] = 1
 

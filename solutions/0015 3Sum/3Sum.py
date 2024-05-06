@@ -1,4 +1,4 @@
-def threeSum(nums):
+def three_sum(nums):
     nums.sort()
     # no need to check equality of triplets
     result = set()

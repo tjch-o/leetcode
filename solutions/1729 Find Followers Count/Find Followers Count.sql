@@ -1,9 +1,15 @@
-select user_id,
+SELECT
+    user_id,
     followers_count
-from (
-        select user_id,
-            count(*) as followers_count
-        from Followers
-        group by user_id
-        order by user_id asc
-    ) as result;
+FROM
+    (
+        SELECT
+            user_id,
+            count(*) AS followers_count
+        FROM
+            Followers
+        GROUP BY
+            user_id
+        ORDER BY
+            user_id ASC
+    ) AS result;

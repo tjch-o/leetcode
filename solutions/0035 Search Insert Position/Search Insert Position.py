@@ -1,4 +1,4 @@
-def searchInsert(nums, target):
+def search_insert(nums, target):
     def helper(lower, upper):
         middle = lower + (upper - lower) // 2  
         

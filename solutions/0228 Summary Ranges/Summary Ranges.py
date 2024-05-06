@@ -1,5 +1,5 @@
-def summaryRanges(nums):
-    def range_string(start, end):
+def summary_ranges(nums):
+    def get_range_string(start, end):
         if start == end:
             return str(start)
         else:
@@ -16,9 +16,9 @@ def summaryRanges(nums):
         if nums[i + 1] == nums[i] + 1:
             end = nums[i + 1]
         else:
-            output.append(range_string(start, end))
+            output.append(get_range_string(start, end))
             start = nums[i + 1]
             end = nums[i + 1]
 
-    output.append(range_string(start, end))
+    output.append(get_range_string(start, end))
     return output

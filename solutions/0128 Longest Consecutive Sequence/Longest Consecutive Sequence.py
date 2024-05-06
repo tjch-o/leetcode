@@ -1,4 +1,4 @@
-def longestConsecutive(nums):
+def longest_consecutive(nums):
     if not nums:
         return 0
 

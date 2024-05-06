@@ -1,5 +1,5 @@
 def coin_change(coins, amount):
-    table = [0 for i in range(amount + 1)]
+    table = [0 for _ in range(amount + 1)]
 
     for i in range(1, amount + 1):
         table[i] = float("Inf")

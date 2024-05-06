@@ -5,17 +5,17 @@ class Solution {
         } else if (root == p || root == q) {
             return root;
         } else {
-            TreeNode leftSubtreeLCA = lowestCommonAncestor(root.left, p, q);
-            TreeNode rightSubtreeLCA = lowestCommonAncestor(root.right, p, q);
+            TreeNode leftSubtree = lowestCommonAncestor(root.left, p, q);
+            TreeNode rightSubtree = lowestCommonAncestor(root.right, p, q);
 
-            if (leftSubtreeLCA != null && rightSubtreeLCA != null) {
+            if (leftSubtree != null && rightSubtree != null) {
                 // p and q are on different subtrees
                 return root;
-            } else if (leftSubtreeLCA != null) {
+            } else if (leftSubtree != null) {
                 // p and q are in the same subtree since the other subtree is null
-                return leftSubtreeLCA;
+                return leftSubtree;
             } else {
-                return rightSubtreeLCA;
+                return rightSubtree;
             }
         }
     }

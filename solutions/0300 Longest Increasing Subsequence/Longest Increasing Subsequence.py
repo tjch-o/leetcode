@@ -1,4 +1,4 @@
-def lengthOfLIS(nums):
+def length_of_LIS(nums):
     if not nums:
         return 0
 

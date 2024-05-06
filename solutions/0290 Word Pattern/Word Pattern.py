@@ -1,4 +1,4 @@
-def wordPattern(pattern, s):
+def word_pattern(pattern, s):
     table = {}
     words_list = s.split(" ")
     

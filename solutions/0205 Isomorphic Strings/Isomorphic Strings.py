@@ -1,4 +1,4 @@
-def isIsomorphic(s, t):
+def is_isomorphic(s, t):
     n = len(s)
     table = {}
 
