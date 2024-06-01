@@ -1,5 +1,6 @@
-def singleNumber(nums):
-     for element in set(nums):
-         count = nums.count(element)
-         if count == 1:
-            return element
+def single_number(nums):
+    result = 0
+
+    for num in nums:
+        result = result ^ num
+    return result

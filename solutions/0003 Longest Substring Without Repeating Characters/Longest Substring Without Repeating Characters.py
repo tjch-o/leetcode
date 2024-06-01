@@ -1,12 +1,12 @@
-def lengthOfLongestSubstring(s):
-    substr = ""
-    max_length = 0
+def length_of_longest_substring(s):
+    longest = 0
+    curr_substr = ""
 
-    for char in s:
-        if char not in substr:
-            max_length = max(len(substr) + 1, max_length)
-            substr += char
-        else:
-            i = substr.index(char)
-            substr = substr[i + 1 :] + char
-    return max_length
+    for i in range(len(s)):
+        if s[i] in curr_substr:
+            start = curr_substr.index(s[i])
+            curr_substr = curr_substr[start + 1 :]
+
+        curr_substr += s[i]
+        longest = max(longest, len(curr_substr))
+    return longest

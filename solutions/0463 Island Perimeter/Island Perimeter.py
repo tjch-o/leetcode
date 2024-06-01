@@ -1,5 +1,4 @@
 def dfs(grid, i, j, m, n, visited):
-    # checking if current grid is water cannot be done before checking if it is the boundary
     if i < 0 or j < 0 or i > m - 1 or j > n - 1 or grid[i][j] == 0:
         return 1
 

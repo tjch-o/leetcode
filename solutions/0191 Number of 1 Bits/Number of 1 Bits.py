@@ -1,14 +1,8 @@
-def hammingWeight(n):
-    def isLastDigitOne(n):
-        result = n & 1
-        return result == 1
-    
-    def removeLastDigit(n):
-        return n >> 1
-    
+def hamming_weight(n):
     count = 0
-    while n != 0:
-        if (isLastDigitOne(n)):
+
+    while n >= 1:
+        if n % 2 == 1:
             count += 1
-        n = removeLastDigit(n)
+        n = n // 2
     return count

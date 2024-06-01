@@ -1,16 +1,20 @@
-import java.util.ArrayList;
-
 public class Solution {
-    ArrayList<ListNode> seen = new ArrayList<>();
-
     public boolean hasCycle(ListNode head) {
         if (head == null) {
             return false;
-        } else if (seen.contains(head)) {
-            return true;
-        } else {
-            seen.add(head);
-            return hasCycle(head.next);
+        } 
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                return true;
+            }
         }
+        return false;
     }
 }

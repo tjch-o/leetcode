@@ -1,4 +1,4 @@
-def groupAnagrams(strs):
+def group_anagrams(strs):
     def get_anagram(s):
         result = list(s)
         result.sort()

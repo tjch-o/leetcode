@@ -4,17 +4,14 @@ class Solution {
     }
 
     public boolean isValidBSTHelper(TreeNode root, long min, long max) {
-        // validating BST is not just checking left and right node values
         if (root == null) {
             return true;
-        } else if (root.val <= min) {
+        } else if (root.val <= min || root.val >= max) {
             return false;
-        } else if (root.val >= max) {
-            return false;
-        } else {
-            boolean validateLeftSubtree = isValidBSTHelper(root.left, min, root.val);
-            boolean validateRightSubtree = isValidBSTHelper(root.right, root.val, max);
-            return validateLeftSubtree && validateRightSubtree;
-        }
+        } 
+
+        boolean isLeftSubtreeValid = isValidBSTHelper(root.left, min, root.val);
+        boolean isRightSubtreeValid = isValidBSTHelper(root.right, root.val, max);
+        return isLeftSubtreeValid && isRightSubtreeValid;
     }
 }

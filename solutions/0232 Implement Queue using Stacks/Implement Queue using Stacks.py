@@ -1,7 +1,7 @@
-class MyQueue:
+class Queue:
     def __init__(self):
         self.q = []
-        
+
     def push(self, x):
         self.q.append(x)
 
@@ -12,4 +12,4 @@ class MyQueue:
         return self.q[0]
 
     def empty(self):
-        return len(self.q) == 0
+        return not self.q

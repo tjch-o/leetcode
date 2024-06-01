@@ -1,26 +1,26 @@
+def fully_before_interval(intervals, i, new_interval):
+    return intervals[i][1] < new_interval[0]
+
+
 def insert(intervals, new_interval):
+    i = 0
+    n = len(intervals)
     result = []
-    inserted_flag = False
 
-    for interval in intervals:
-        # new interval is completely before current interval
-        if interval[0] > new_interval[1]:
-            if not inserted_flag:
-                result.append(new_interval)
-                inserted_flag = True
-            result.append(interval)
+    while i < n and fully_before_interval(intervals, i, new_interval):
+        result.append(intervals[i])
+        i += 1
 
-        # new interval is completely after current interval
-        elif interval[1] < new_interval[0]:
-            result.append(interval)
+    curr = new_interval
 
-        else:
-            # dont insert after updating the new interval to handle the overlap because of double counting
-            min_start = min(interval[0], new_interval[0])
-            max_end = max(interval[1], new_interval[1])
-            new_interval = [min_start, max_end]
+    while i < n and intervals[i][0] <= curr[1]:
+        low = min(intervals[i][0], curr[0])
+        high = max(intervals[i][1], curr[1])
+        curr = [low, high]
+        i += 1
 
-    # new interval is all the way at the end and is not inserted yet
-    if not inserted_flag:
-        result.append(new_interval)
+    result.append(curr)
+
+    for j in range(i, n):
+        result.append(intervals[j])
     return result

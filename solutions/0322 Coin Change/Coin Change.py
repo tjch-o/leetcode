@@ -1,10 +1,15 @@
 def coin_change(coins, amount):
-    table = [0 for _ in range(amount + 1)]
+    if amount < 0:
+        return -1
+
+    table = [float("inf")] * (amount + 1)
+    table[0] = 0
 
     for i in range(1, amount + 1):
-        table[i] = float("Inf")
         for coin in coins:
             if i - coin >= 0:
-                # minus the largest coin then +1 to the number of coins used
-                table[i] = min(table[i], 1 + table[i - coin])
-    return table[amount] if table[amount] != float("Inf") else -1
+                table[i] = min(table[i], table[i - coin] + 1)
+
+    if table[amount] == float("inf"):
+        return -1
+    return table[amount]

@@ -1,6 +1,8 @@
 class Solution {
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
-        if (root == null) {
+        if (root == null && subRoot == null) {
+            return true;
+        } else if (root == null) {
             return false;
         } else if (isSameTree(root, subRoot)) {
             return true;
@@ -9,15 +11,13 @@ class Solution {
         }
     }
 
-    public boolean isSameTree(TreeNode p, TreeNode q) {
-        if (p == null && q == null) {
+    public boolean isSameTree(TreeNode x, TreeNode y) {
+        if (x == null && y == null) {
             return true;
-        } else if (p == null || q == null) {
+        } else if (x == null | y == null) {
             return false;
-        } else if (p.val == q.val) {
-            return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
         } else {
-            return false;
+            return isSameTree(x.left, y.left) && x.val == y.val && isSameTree(x.right, y.right);
         }
     }
 }

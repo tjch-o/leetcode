@@ -1,19 +1,14 @@
-def isValid(s):
-    if len(s) % 2 != 0:
-        return False
-    
-    table = {"(" : ")", "{": "}",  "[": "]"}
+def is_valid(s):
     stack = []
-    
+    matches = {'(': ')', '{': '}', '[': ']'}
+
     for char in s:
-        if char in table:
+        if char in matches:
             stack.append(char)
+        elif not stack:
+            return False
+        elif char == matches[stack[-1]]:
+            stack.pop()
         else:
-            if not stack:
-                return False
-            # stack is LIFO
-            top_of_stack = stack.pop()
-            if char != table[top_of_stack]:
-                return False
-            
-    return len(stack) == 0
+            return False
+    return not stack

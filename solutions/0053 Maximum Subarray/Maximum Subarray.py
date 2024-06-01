@@ -1,16 +1,14 @@
 def max_subarray(nums):
-    # implement Kadane's algorithm
-    all_negative = True
-    current_subarr_sum = 0
-    max_so_far = float("-inf")
+    if not nums:
+        return 0
+    elif len(nums) == 1:
+        return nums[0]
+    
+    max_ending_at_pos = nums[0]
+    curr_max = nums[0]
 
-    for num in nums:
-        if num > 0:
-            all_negative = False
-
-        current_subarr_sum += num
-        if current_subarr_sum < 0:
-            current_subarr_sum = 0
-
-        max_so_far = max(max_so_far, current_subarr_sum)
-    return max_so_far if not all_negative else max(nums)
+    for i in range(1, len(nums)):
+        # start from current position or add to previous subarray; not adding might miss out on a potential higher sum
+        max_ending_at_pos = max(nums[i], max_ending_at_pos + nums[i])
+        curr_max = max(curr_max, max_ending_at_pos)
+    return curr_max

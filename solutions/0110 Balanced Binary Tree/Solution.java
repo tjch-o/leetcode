@@ -2,17 +2,18 @@ class Solution {
     public boolean isBalanced(TreeNode root) {
         if (root == null) {
             return true;
-        } else {
-            return isBalanced(root.left) && isBalanced(root.right) && 
-            Math.abs(heightOfTree(root.left) - heightOfTree(root.right)) <= 1;
         }
+        return isBalanced(root.left) && heightDifferenceWithinOne(root) && isBalanced(root.right);
     }
 
-    public int heightOfTree(TreeNode root) {
-        if (root == null) {
+    public boolean heightDifferenceWithinOne(TreeNode node) {
+        return Math.abs(getHeight(node.left) - getHeight(node.right)) <= 1;
+    }
+
+    public int getHeight(TreeNode node) {
+        if (node == null) {
             return 0;
-        } else {
-            return Math.max(heightOfTree(root.left), heightOfTree(root.right)) + 1;
         }
+        return 1 + Math.max(getHeight(node.left), getHeight(node.right));
     }
 }

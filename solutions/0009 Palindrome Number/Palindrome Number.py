@@ -1,6 +1,12 @@
-def isPalindrome(x):
-    str_x = str(x)
+def is_palindrome(x):
+    return x == get_reversed_num(x)
 
-    if str_x == str_x[::-1]:
-        return True
-    return False
+
+def get_reversed_num(x):
+    result = 0
+
+    while x > 0:
+        digit = x % 10
+        result = result * 10 + digit
+        x = x // 10
+    return result

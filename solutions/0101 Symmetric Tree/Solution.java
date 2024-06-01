@@ -2,22 +2,17 @@ class Solution {
     public boolean isSymmetric(TreeNode root) {
         if (root == null) {
             return true;
-        } else {
-            return isSubtreesSymmetric(root.left, root.right);
         }
+        return isMirrored(root.left, root.right);
     }
 
-    public boolean isSubtreesSymmetric(TreeNode leftSubtree, TreeNode rightSubtree) {
-        if (leftSubtree == null && rightSubtree == null) {
+    public boolean isMirrored(TreeNode left, TreeNode right) {
+        if (left == null && right == null) {
             return true;
-        } else if (leftSubtree != null && rightSubtree == null) {
-            return false;
-        } else if (leftSubtree == null && rightSubtree != null) {
+        } else if (left == null || right == null) {
             return false;
         } else {
-            return leftSubtree.val == rightSubtree.val && 
-            isSubtreesSymmetric(leftSubtree.left, rightSubtree.right) && 
-            isSubtreesSymmetric(leftSubtree.right, rightSubtree.left);
+            return isMirrored(left.left, right.right) && left.val == right.val && isMirrored(left.right, right.left);
         }
     }
 }

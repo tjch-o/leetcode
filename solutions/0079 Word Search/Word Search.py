@@ -1,12 +1,12 @@
 def exist(board, word):
-    def isWithinBoard(i, j):
+    def is_within_board(i, j):
         return 0 <= i < len(board) and 0 <= j < len(board[0])
 
     def dfs(i, j, index, visited):
         if index == len(word):
             return True
 
-        if isWithinBoard(i, j) and board[i][j] == word[index] and not visited[i][j]:
+        if is_within_board(i, j) and board[i][j] == word[index] and not visited[i][j]:
             visited[i][j] = True
 
             left = dfs(i, j - 1, index + 1, visited)
