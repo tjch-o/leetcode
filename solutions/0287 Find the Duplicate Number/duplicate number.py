@@ -1,21 +1,19 @@
 def find_duplicate(nums):
-    slow_ptr = 0
-    fast_ptr = 0
-    
+    # implement Tortoise and Hare algorithm
+    slow = 0
+    fast = 0
+
     while True:
-        slow_ptr = nums[slow_ptr]
-        fast_ptr = nums[nums[fast_ptr]]
-        
-        if slow_ptr == fast_ptr:
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+
+        # cycle detected
+        if slow == fast:
             break
-        
-    other_slow_ptr = 0
-    
-    while True:
-        slow_ptr = nums[slow_ptr]
-        other_slow_ptr = nums[other_slow_ptr]
-        
-        if slow_ptr == other_slow_ptr:
-            break
-        
-    return slow_ptr
+
+    other_slow = 0
+
+    while slow != other_slow:
+        slow = nums[slow]
+        other_slow = nums[other_slow]
+    return slow

@@ -1,4 +1,4 @@
-def twoSum(numbers, target):
+def two_sum(numbers, target):
     left = 0
     right = len(numbers) - 1
 

@@ -1,4 +1,4 @@
-def canJump(nums):
+def can_jump(nums):
     if len(nums) == 1:
         return True
 

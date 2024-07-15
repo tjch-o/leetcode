@@ -1,4 +1,4 @@
-def kthFactor(n, k):
+def kth_factor(n, k):
     if k == 1:
         return 1
     elif n == 1 and k > 1:

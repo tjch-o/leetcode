@@ -1,31 +1,37 @@
 def spiral_order(matrix):
-    m = len(matrix)
-    n = len(matrix[0])
-    output = []
+    m, n = len(matrix), len(matrix[0])
+    up, down = 0, m - 1
+    left, right = 0, n - 1
+    result = []
+    visited = set()
 
-    row_low = 0
-    row_high = m - 1
-    col_low = 0
-    col_high = n - 1
+    while left <= right and up <= down:
+        for j in range(left, right + 1):
+            if (up, j) not in visited:
+                result.append(matrix[up][j])
+                visited.add((up, j))
 
-    while row_low <= row_high and col_low <= col_high:
-        for i in range(col_low, col_high + 1):
-            output.append(matrix[row_low][i])
-        row_low += 1
+        up += 1
 
-        for i in range(row_low, row_high + 1):
-            output.append(matrix[i][col_high])
-        col_high -= 1
+        for i in range(up, down + 1):
+            if (i, right) not in visited:
+                result.append(matrix[i][right])
+                visited.add((i, right))
 
-        # the if case for both is to prevent double counting when there is only one row and column left
-        if row_low <= row_high and col_low <= col_high:
-            for i in range(col_high, col_low - 1, -1):
-                output.append(matrix[row_high][i])
-            row_high -= 1
+        right -= 1
 
-        if row_low <= row_high and col_low <= col_high:
-            for i in range(row_high, row_low - 1, -1):
-                output.append(matrix[i][col_low])
-            col_low += 1
+        for j in range(right, left - 1, -1):
+            if (down, j) not in visited:
+                result.append(matrix[down][j])
+                visited.add((down, j))
 
-    return output
+        down -= 1
+
+        for i in range(down, up - 1, -1):
+            if (i, left) not in visited:
+                result.append(matrix[i][left])
+                visited.add((i, left))
+
+        left += 1
+
+    return result

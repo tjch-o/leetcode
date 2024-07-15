@@ -1,13 +1,13 @@
 class TrieNode:
     def __init__(self):
         self.children = {}
-        self.is_the_end = False
+        self.flag = False
 
     def set_end(self):
-        self.is_the_end = True
+        self.flag = True
 
     def is_end_of_word(self):
-        return self.is_the_end
+        return self.flag
 
     def set_child(self, c):
         if c not in self.children:

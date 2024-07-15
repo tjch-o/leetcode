@@ -1,6 +1,5 @@
 def unique_paths_with_obstacles(obstacle_grid):
-    m = len(obstacle_grid)
-    n = len(obstacle_grid[0])
+    m, n = len(obstacle_grid), len(obstacle_grid[0])
     table = [[0 for _ in range(n)] for _ in range(m)]
 
     if obstacle_grid[0][0] == 1:

@@ -1,16 +1,16 @@
 def can_complete_circuit(gas, cost):
-    total_gas = 0
-    start = 0
-
     if sum(gas) < sum(cost):
         return -1
 
-    for i in range(len(gas)):
-        # gas reloaded at current station then used to travel to the next station
-        total_gas += gas[i] - cost[i]
+    total = 0
+    start = 0
 
-        if total_gas < 0:
-            total_gas = 0
-            # start at next station because any start point before i will not be able to complete circuit
+    for i, g in enumerate(gas):
+        net = g - cost[i]
+
+        if total + net < 0:
             start = i + 1
+            total = 0
+        else:
+            total += net
     return start

@@ -1,4 +1,4 @@
-def mergeAlternatively(word1, word2):
+def merge_alternatively(word1, word2):
     if word1 and not word2:
         return word1
     elif word2 and not word1:

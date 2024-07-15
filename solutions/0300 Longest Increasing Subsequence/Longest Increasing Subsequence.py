@@ -1,12 +1,10 @@
 def length_of_LIS(nums):
-    if not nums:
-        return 0
-
+    n = len(nums)
     # table stores length of LIS ending at the index, not the highest value seen
-    table = [1 for _ in range(len(nums))]
+    table = [1 for _ in range(n)]
 
-    for i in range(len(nums)):
-        for j in range(0, i):
+    for i in range(n):
+        for j in range(i):
             if nums[i] > nums[j]:
                 table[i] = max(table[i], table[j] + 1)
     return max(table)

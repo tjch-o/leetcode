@@ -1,16 +1,14 @@
+from collections import defaultdict
+
+
 def group_anagrams(strs):
-    def get_anagram(s):
-        result = list(s)
-        result.sort()
-        return "".join(result)
+    counts = defaultdict(list)
 
-    anagram_dict = {}
+    for s in strs:
+        sorted_s = "".join(sorted(list(s)))
+        counts[sorted_s].append(s)
 
-    for word in strs:
-        anagram = get_anagram(word)
-        if anagram not in anagram_dict:
-            anagram_dict[anagram] = [word]
-        else:
-            anagram_dict[anagram].append(word)
-
-    return list(anagram_dict.values())
+    result = []
+    for val in counts.values():
+        result.append(val)
+    return result

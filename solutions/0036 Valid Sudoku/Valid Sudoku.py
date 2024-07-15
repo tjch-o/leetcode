@@ -1,42 +1,28 @@
-def check_row(board, i, j):
-    return board[i].count(board[i][j]) <= 1
-
-
-def check_col(board, i, j):
-    column = list(map(lambda x: x[j], board))
-    return column.count(board[i][j]) <= 1
-
-
-def check_grid(board, i, j):
-    x = int(i / 3)
-    y = int(j / 3)
-    start_x, end_x = 3 * x, 3 * x + 3
-    start_y, end_y = 3 * y, 3 * y + 3
-
-    count = 0
-    for a in range(start_x, end_x):
-        for b in range(start_y, end_y):
-            if board[a][b] == board[i][j]:
-                count += 1
-    return count <= 1
+def get_grid_number(i, j):
+    x = i // 3
+    y = j // 3
+    return 3 * x + y
 
 
 def is_valid_sudoku(board):
-    n = 9
+    rows = [set() for _ in range(9)]
+    columns = [set() for _ in range(9)]
+    squares = [set() for _ in range(9)]
 
-    for i in range(n):
+    m, n = len(board), len(board[0])
+
+    for i in range(m):
         for j in range(n):
-            if board[i][j] != ".":
-                row_flag = check_row(board, i, j)
-                if not row_flag:
-                    return False
+            curr = board[i][j]
+            grid_num = get_grid_number(i, j)
 
-                col_flag = check_col(board, i, j)
-                if not col_flag:
-                    return False
+            if curr == ".":
+                continue
 
-                grid_flag = check_grid(board, i, j)
-                if not grid_flag:
-                    return False
+            if curr in rows[i] or curr in columns[j] or curr in squares[grid_num]:
+                return False
 
+            rows[i].add(curr)
+            columns[j].add(curr)
+            squares[grid_num].add(curr)
     return True

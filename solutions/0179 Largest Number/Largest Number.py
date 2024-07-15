@@ -1,4 +1,4 @@
-def largestNumber(nums):
+def largest_number(nums):
     if 0 in nums and nums.count(0) == len(nums):
         return str(0)
     
