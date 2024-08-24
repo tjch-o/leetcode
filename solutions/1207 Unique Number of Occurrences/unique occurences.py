@@ -1,4 +1,4 @@
-def uniqueOccurences(arr):
+def unique_occurences(arr):
     table = {}
     for num in arr:
         if num not in table:

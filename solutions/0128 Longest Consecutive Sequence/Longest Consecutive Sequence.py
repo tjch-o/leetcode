@@ -1,21 +1,21 @@
 def longest_consecutive(nums):
-    if not nums:
-        return 0
+    if len(nums) <= 1:
+        return len(nums)
 
-    curr_length = 0
-    max_length = 0
-    num_set = set(nums)
+    curr_streak = 0
+    curr = float("-inf")
+    longest = 0
+    seen = set(nums)
 
-    for number in num_set:
-        curr_number = number
-        
-        # find values that have no left neighbour on the number line
-        if curr_number - 1 not in num_set:
-            curr_length = 1
+    for num in seen:
+        # check if start of sequence
+        if num - 1 not in seen:
+            curr = num
+            curr_streak = 1
 
-            while curr_number + 1 in num_set:
-                curr_length += 1
-                curr_number += 1
+            while curr + 1 in seen:
+                curr += 1
+                curr_streak += 1
 
-        max_length = max(max_length, curr_length)
-    return max_length
+            longest = max(longest, curr_streak)
+    return longest

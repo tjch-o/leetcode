@@ -1,11 +1,14 @@
+def within_int(x):
+    return -(2**31) <= x < 2**31 - 1
+
+
 def reverse(x):
-    s = str(x)
-    reversed_s = s[::-1]
+    negative = x < 0
+    reversed = int(str(abs(x))[::-1])
 
-    if s[0] == "-":
-        reversed_s = reversed_s[-1] + reversed_s[:-1]
-
-    reversed_s = int(reversed_s)
-    if reversed_s < -(2**31) or reversed_s >= 2**31:
+    if not within_int(x) or not within_int(reversed):
         return 0
-    return reversed_s
+
+    if negative:
+        reversed *= -1
+    return reversed

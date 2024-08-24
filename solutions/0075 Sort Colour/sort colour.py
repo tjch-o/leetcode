@@ -9,14 +9,15 @@ def partition(arr, low, high):
     left = low + 1
     right = high
 
-    while True:
+    while left <= right:
         while left <= right and arr[left] <= pivot:
             left += 1
-        while left <= right and arr[right] >= pivot:
+        while left <= right and arr[right] > pivot:
             right -= 1
-        if right < left:
-            break
-        arr[left], arr[right] = arr[right], arr[left]
+        if left <= right:
+            arr[left], arr[right] = arr[right], arr[left]
+            left += 1
+            right -= 1
 
     # when the loop terminates the rest of the array is partitioned
     arr[low], arr[right] = arr[right], arr[low]

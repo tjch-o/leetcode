@@ -1,4 +1,4 @@
-def deleteAndEarn(nums):
+def delete_and_earn(nums):
     table = {}
     for number in nums:
         if number not in table:

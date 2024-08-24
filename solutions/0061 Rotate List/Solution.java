@@ -1,48 +1,45 @@
 class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        if (head == null || head.next == null || k == 0) {
+        if (head == null) {
             return head;
         }
-        
-        int lengthOfList = lengthOfLinkedList(head);
-        k = k % lengthOfList;
+
+        ListNode curr = head;
+        int n = getLengthOfList(head);
+        k = k % n;
 
         for (int i = 0; i < k; i += 1) {
-            head = rotateRightOnce(head);
+            curr = rotateOnce(curr);
         }
-
-        return head;
+        return curr;
     }
 
-    public ListNode rotateRightOnce(ListNode head) {
+    public ListNode rotateOnce(ListNode head) {
         if (head == null || head.next == null) {
             return head;
-        } else {
-            ListNode tail = head.next; 
-            while (tail.next != null) {
-                tail = tail.next;
-            }
-
-            // make the list circular
-            tail.next = head;
-
-            ListNode newHead = head.next;
-            ListNode newTail = head;
-            while (newHead.next != head) {
-                // the newTail pointer is always one node behind the newHead
-                newHead = newHead.next;
-                newTail = newTail.next;
-            }
-            newTail.next = null;
-
-            return newHead;
         }
+
+        ListNode tail = head;
+
+        while (tail.next != null) {
+            tail = tail.next;
+        }
+
+        ListNode secondLastNode = head;
+
+        while (secondLastNode.next.next != null) {
+            secondLastNode = secondLastNode.next;
+        }
+
+        secondLastNode.next = null;
+        tail.next = head;
+        return tail;
     }
 
-    public int lengthOfLinkedList(ListNode head) {
+    public int getLengthOfList(ListNode head) {
         if (head == null) {
             return 0;
         }
-        return 1 + lengthOfLinkedList(head.next);
+        return 1 + getLengthOfList(head.next);
     }
 }
