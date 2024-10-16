@@ -1,21 +1,24 @@
-def min_eating_speed(piles, h):
-    def hours_for_one_pile(num, speed):
-        remainder = num % speed
-        return num // speed + 1 if remainder != 0 else num // speed
+def can_finish(piles, h, k):
+    if k == 0:
+        return False
 
-    def hours_for_whole_pile(piles, speed):
-        count = 0
-        for pile in piles:
-            count += hours_for_one_pile(pile, speed)
-        return count
-
-    start = 1
-    end = max(piles)
-
-    while start <= end:
-        middle = start + (end - start) // 2
-        if hours_for_whole_pile(piles, middle) <= h:
-            end = middle - 1
+    count = 0
+    for pile in piles:
+        if pile % k == 0:
+            count += pile // k
         else:
-            start = middle + 1
-    return start
+            count += pile // k + 1
+    return count <= h
+
+
+def min_eating_speed(piles, h):
+    left = 0
+    right = max(piles)
+
+    while left < right:
+        mid = left + (right - left) // 2
+        if can_finish(piles, h, mid):
+            right = mid
+        else:
+            left = mid + 1
+    return right

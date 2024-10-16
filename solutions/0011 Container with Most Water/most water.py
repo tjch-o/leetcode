@@ -1,19 +1,16 @@
-def max_area(height):
-    n = len(height)
-    start, end = 0, n - 1
-    largest_area = float("-inf")
+def max_area(heights):
+    left, right = 0, len(heights) - 1
+    largest_area = 0
 
-    while start <= end:
-        lower_bound = min(height[start], height[end])
-        width = end - start
-        curr = lower_bound * width
+    while left < right:
+        width = right - left
+        h = min(heights[left], heights[right])
+        area = width * h
 
-        if curr > largest_area:
-            largest_area = curr
+        largest_area = max(largest_area, area)
 
-        # move pointer to  potentially find a container with more height and thus more area
-        if height[start] < height[end]:
-            start += 1
+        if heights[left] < heights[right]:
+            left += 1
         else:
-            end -= 1
+            right -= 1
     return largest_area

@@ -1,14 +1,14 @@
 def is_valid(s):
+    matches = {"(": ")", "[": "]", "{": "}"}
     stack = []
-    matches = {'(': ')', '{': '}', '[': ']'}
 
-    for char in s:
-        if char in matches:
-            stack.append(char)
-        elif not stack:
+    for c in s:
+        if not stack and c not in matches:
             return False
-        elif char == matches[stack[-1]]:
+        elif c in matches:
+            stack.append(c)
+        elif c not in matches:
+            if c != matches[stack[-1]]:
+                return False
             stack.pop()
-        else:
-            return False
     return not stack

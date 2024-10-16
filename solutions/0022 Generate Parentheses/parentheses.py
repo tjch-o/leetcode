@@ -1,21 +1,22 @@
-def backtrack(result, stack, unused_open, unused_close):
-    if unused_open == unused_close and unused_open == 0:
-        valid_set = "".join(stack)
-        result.append(valid_set)
+def dfs(acc, stack, n, n_open, n_close):
+    if n_open == n_close == n:
+        combi = "".join(stack)
+        acc.append(combi)
+        return
 
-    if unused_open > 0:
+    if n_open < n:
         stack.append("(")
-        backtrack(result, stack, unused_open - 1, unused_close)
-        # stack is used throughout the recursion so need to clear
+        dfs(acc, stack, n, n_open + 1, n_close)
         stack.pop()
 
-    if unused_close > unused_open:
+    if n_close < n_open:
         stack.append(")")
-        backtrack(result, stack, unused_open, unused_close - 1)
+        dfs(acc, stack, n, n_open, n_close + 1)
         stack.pop()
 
 
-def generate_parentheses(n):
-    result = []
-    backtrack(result, [], n, n)
-    return result
+def generate_parenthesis(n):
+    res = []
+    stack = []
+    dfs(res, stack, n, 0, 0)
+    return res

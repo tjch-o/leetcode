@@ -1,19 +1,24 @@
-def will_collide(a1, a2):
-    return a1 > 0 and a2 < 0
+def will_collide(r1, r2):
+    return r1 > 0 and r2 < 0
+
 
 def asteroid_collision(asteroids):
-    stack = []
+    stack = [asteroids[0]]
+    n = len(asteroids)
+    i = 1
 
-    for asteroid in asteroids:
-        while stack and will_collide(stack[-1], asteroid):
-            if abs(stack[-1]) == abs(asteroid):
+    while i < n:
+        curr = asteroids[i]
+        while stack and will_collide(stack[-1], curr):
+            if abs(stack[-1]) == abs(curr):
                 stack.pop()
                 break
-            elif abs(asteroid) > abs(stack[-1]):
+            elif abs(stack[-1]) < abs(curr):
                 stack.pop()
             else:
                 break
-        
+
         else:
-            stack.append(asteroid)
+            stack.append(curr)
+        i += 1
     return stack
