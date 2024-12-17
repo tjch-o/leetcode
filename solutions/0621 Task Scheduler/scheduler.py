@@ -1,19 +1,27 @@
 from collections import Counter
+import heapq
+
 
 def least_interval(tasks, n):
-    task_counts = Counter(tasks)
+    counts = Counter(tasks)
+    heap = []
+    heapq.heapify(heap)
 
-    task_slots = list(task_counts.values())
-    task_slots.sort(reverse=True)
-    highest_freq = task_slots[0]
+    for task, count in counts.items():
+        heapq.heappush(heap, -count)
 
-    # if n = 2 and there are 3 (highest) As it should look like A __ A __ A
-    num_intervals = highest_freq - 1
-    idle_slots = num_intervals * n
+    cooldown = []
+    time = 0
 
-    for slots in task_slots[1:]:
-        # can only put one of each character in each interval
-        idle_slots -= min(slots, num_intervals)
+    while heap or cooldown:
+        time += 1
 
-    idle_slots = max(idle_slots, 0)
-    return len(tasks) + idle_slots
+        if heap:
+            freq = -heapq.heappop(heap) - 1
+            if freq > 0:
+                cooldown.append((freq, time + n))
+
+        if cooldown and cooldown[0][1] == time:
+            next_task = cooldown.pop(0)
+            heapq.heappush(heap, -next_task[0])
+    return time

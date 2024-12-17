@@ -1,7 +1,7 @@
 import heapq
 
 
-def kth_largest_element(nums, k):
+def find_kth_largest(nums, k):
     heapq.heapify(nums)
 
     for _ in range(len(nums) - k):

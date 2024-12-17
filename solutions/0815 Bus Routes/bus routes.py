@@ -1,34 +1,35 @@
 from collections import defaultdict, deque
 
 
-def num_buses_to_destination(routes, src, target):
+def num_buses_to_destination(routes, src, dest):
     adj_list = defaultdict(set)
 
-    for i, route in enumerate(routes):
-        for stop in route:
+    for i, route_num in enumerate(routes):
+        for stop in route_num:
             adj_list[stop].add(i)
 
     visited_routes = set()
     visited_stops = set()
-    pq = deque([(src, 0)])
+    queue = deque()
+    queue.append((src, 0))
 
-    while pq:
-        curr, n = pq.popleft()
+    while queue:
+        stop, n = queue.popleft()
 
-        if curr == target:
+        if stop == dest:
             return n
 
-        if curr in visited_stops:
+        if stop in visited_stops:
             continue
 
-        visited_stops.add(curr)
+        visited_stops.add(stop)
 
-        for route in adj_list[curr]:
-            if route in visited_routes:
+        for route_num in adj_list[stop]:
+            if route_num in visited_routes:
                 continue
 
-            visited_routes.add(route)
+            visited_routes.add(route_num)
 
-            for stop in routes[route]:
-                pq.append((stop, n + 1))
+            for s in routes[route_num]:
+                queue.append((s, n + 1))
     return -1

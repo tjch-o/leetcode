@@ -6,7 +6,7 @@ def diagonal_sum(mat):
     # else can ignore middle guy add everything together
     m = len(mat)
     n = len(mat[0])
-    odd_indicator = True if m % 2 != 0 else False
+    is_odd = True if m % 2 != 0 else False
 
     def first_diagonal(i, j, accumulate):
         if i >= m or j >= n:
@@ -22,7 +22,7 @@ def diagonal_sum(mat):
 
     total_sum = first_diagonal(0, 0, 0) + second_diagonal(0, n - 1, 0)
 
-    if odd_indicator:
+    if is_odd:
         middle = floor(m / 2)
         # same middle for both row and column
         return total_sum - mat[middle][middle]

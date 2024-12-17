@@ -1,5 +1,9 @@
 def transpose(matrix):
-    new_matrix = []
-    for i in range(len(matrix[0])):
-        new_matrix.append(list(map(lambda x: x[i], matrix)))
-    return new_matrix
+    m, n = len(matrix), len(matrix[0])
+    res = []
+
+    for j in range(n):
+        res.append([])
+        for i in range(m):
+            res[j].append(matrix[i][j])
+    return res

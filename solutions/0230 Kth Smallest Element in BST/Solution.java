@@ -1,26 +1,26 @@
 class Solution {
+    private TreeNode result;
     private int count = 0;
-    private int result = Integer.MIN_VALUE;
 
     public int kthSmallest(TreeNode root, int k) {
-        inOrderTraversal(root, k);
-        return result;
+        traverse(root, k);
+        return result.val;
     }
 
-    public void inOrderTraversal(TreeNode root, int k) {
+    public void traverse(TreeNode root, int k) {
         if (root == null) {
             return;
         }
 
-        inOrderTraversal(root.left, k);
+        traverse(root.left, k);
 
         count += 1;
 
-        if (k == count) {
-            result = root.val;
+        if (count == k) {
+            result = root;
             return;
         }
 
-        inOrderTraversal(root.right, k);
+        traverse(root.right, k);
     }
 }
