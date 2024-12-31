@@ -30,5 +30,4 @@ def update_matrix(mat):
                 if result[ni][nj] > count + 1:
                     result[ni][nj] = count + 1
                     queue.append((ni, nj, count + 1))
-
     return result

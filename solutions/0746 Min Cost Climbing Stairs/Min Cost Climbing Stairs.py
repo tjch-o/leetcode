@@ -1,4 +1,4 @@
-def minCostClimbingStairs(cost):
+def min_cost_climbing_stairs(cost):
     n = len(cost)
     table = [float("inf") for _ in range(n)]
     

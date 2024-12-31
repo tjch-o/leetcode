@@ -1,24 +1,16 @@
 from math import floor, sqrt
 
 
-def is_square(x):
-    square_root = sqrt(x)
-    return square_root == floor(square_root)
-
-
 def num_squares(n):
     table = [float("inf") for _ in range(n + 1)]
-    perfect_squares = []
+    table[0] = 0
+
+    squares = [i**2 for i in range(1, n + 1)]
 
     for i in range(1, n + 1):
-        if is_square(i):
-            perfect_squares.append(i)
+        for square in squares:
+            if square > i:
+                break
 
-    for i in perfect_squares:
-        table[i] = 1
-
-    for i in range(1, n + 1):
-        for j in perfect_squares:
-            if i - j >= 0:
-                table[i] = min(table[i], table[i - j] + 1)
+            table[i] = min(table[i], table[i - square] + 1)
     return table[n]

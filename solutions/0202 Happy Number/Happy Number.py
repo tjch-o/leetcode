@@ -1,19 +1,22 @@
-def sum_square_of_digits(number):
-    str_num = str(number)
-    sum = 0
-    for digit in str_num:
-        sum += int(digit) ** 2
-    return sum
+def f(x):
+    s = 0
+    
+    while x != 0:
+        s += (x % 10) ** 2
+        x = x // 10
+    return s
 
 
 def is_happy(n):
-    x = n
     seen = set()
-    while sum_square_of_digits(x) != 1:
-        if x not in seen:
-            seen.add(x)
-            x = sum_square_of_digits(x)
-        else:
-            # there will be a cycle where the sequence of numbers repeat without reaching 1
+
+    while n != 1:
+        if f(n) == 1:
+            break
+
+        if f(n) in seen:
             return False
+
+        n = f(n)
+        seen.add(n)
     return True

@@ -1,27 +1,19 @@
+from collections import defaultdict
+
+
 def character_replacement(s, k):
-    n = len(s)
-    left = 0
-    right = 0
-    counts = {}
-    result = 0
+    counts = defaultdict(int)
+    max_count = 0
+    max_l = 0
+    start = 0
 
-    for i in range(65, 91):
-        counts[chr(i)] = 0
+    for i, c in enumerate(s):
+        counts[c] += 1
+        max_count = max(max_count, counts[c])
 
-    while right < n:
-        curr = s[right]
-        counts[curr] += 1
+        if i - start + 1 - max_count > k:
+            counts[s[start]] -= 1
+            start += 1
 
-        window_size = right - left + 1
-        max_freq = max(counts.values())
-        num_chars_to_replace = window_size - max_freq
-
-        if num_chars_to_replace <= k:
-            result = max(result, window_size)
-        else:
-            # shift the window
-            counts[s[left]] -= 1
-            left += 1
-        
-        right += 1
-    return result
+        max_l = max(max_l, i - start + 1)
+    return max_l
