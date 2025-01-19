@@ -1,30 +1,20 @@
-def compare_two_words(w1, w2, order):
-    shorter_w_len = len(w1) if len(w1) <= len(w2) else len(w2)
-
-    for i in range(shorter_w_len):
-        w1_c = w1[i]
-        w1_c_index = order.index(w1_c)
-
-        w2_c = w2[i]
-        w2_c_index = order.index(w2_c)
-
-        if w1_c_index > w2_c_index:
-            return False
-        elif w1_c_index < w2_c_index:
-            return True
-
-    if len(w1) > len(w2):
-        return False
-    return True
-
-
 def is_alien_sorted(words, order):
-    n = len(words)
+    mapping = {}
 
-    for i in range(n - 1):
-        curr = words[i]
-        next = words[i + 1]
+    for i, letter in enumerate(order):
+        mapping[letter] = i
 
-        if not compare_two_words(curr, next, order):
-            return False
+    for i in range(len(words) - 1):
+        w1, w2 = words[i], words[i + 1]
+        min_l = min(len(w1), len(w2))
+
+        for j in range(min_l):
+            if mapping[w1[j]] < mapping[w2[j]]:
+                break
+            elif mapping[w1[j]] > mapping[w2[j]]:
+                return False
+
+            if j == min_l - 1:
+                if w1[min_l:] and not w2[min_l:]:
+                    return False
     return True
