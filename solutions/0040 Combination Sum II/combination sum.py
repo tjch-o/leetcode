@@ -1,24 +1,22 @@
-def combination_sum_helper(candidates, target, idx, curr, path, res):
+def backtrack(candidates, target, ptr, curr, acc, res):
     if curr == target:
-        res.append(path[:])
+        res.append(acc)
         return
 
-    for i in range(idx, len(candidates)):
-        if i > idx and candidates[i] == candidates[i - 1]:
+    for i in range(ptr, len(candidates)):
+        if i > ptr and candidates[i] == candidates[i - 1]:
             continue
 
         if curr + candidates[i] > target:
             break
 
-        path.append(candidates[i])
-        combination_sum_helper(
-            candidates, target, i + 1, curr + candidates[i], path, res
+        backtrack(
+            candidates, target, i + 1, curr + candidates[i], acc + [candidates[i]], res
         )
-        path.pop()
 
 
 def combination_sum(candidates, target):
     res = []
     candidates.sort()
-    combination_sum_helper(candidates, target, 0, 0, [], res)
+    backtrack(candidates, target, 0, 0, [], res)
     return res
