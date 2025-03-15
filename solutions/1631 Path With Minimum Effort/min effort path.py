@@ -5,28 +5,28 @@ def within_grid(grid, i, j):
     return 0 <= i < len(grid) and 0 <= j < len(grid[0])
 
 
-def min_effort_path(heights):
+def minimum_effort_path(heights):
     m, n = len(heights), len(heights[0])
-    table = [[float("inf") for _ in range(n)] for _ in range(m)]
-    table[0][0] = 0
-
     heap = [(0, 0, 0)]
     heapq.heapify(heap)
+    visited = set()
 
     while heap:
-        curr, i, j = heapq.heappop(heap)
-        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        effort, i, j = heapq.heappop(heap)
 
         if i == m - 1 and j == n - 1:
-            return curr
+            return effort
 
-        for x, y in directions:
-            ni, nj = x + i, y + j
+        if (i, j) in visited:
+            continue
 
-            if within_grid(heights, ni, nj):
-                next_effort = max(curr, abs(heights[ni][nj] - heights[i][j]))
+        visited.add((i, j))
+        dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
-                if next_effort < table[ni][nj]:
-                    table[ni][nj] = next_effort
-                    heapq.heappush(heap, (next_effort, ni, nj))
-    return -1
+        for x, y in dirs:
+            ni, nj = i + x, j + y
+
+            if within_grid(heights, ni, nj) and (ni, nj) not in visited:
+                d = abs(heights[i][j] - heights[ni][nj])
+                new_effort = max(effort, d)
+                heapq.heappush(heap, (new_effort, ni, nj))

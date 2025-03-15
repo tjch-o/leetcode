@@ -1,2 +1,8 @@
-select firstname, lastname, city, state from Person
-left join Address on Person.personId = Address.personId;
+SELECT
+    firstname,
+    lastname,
+    city,
+    state
+FROM
+    Person
+    LEFT JOIN Address ON Person.personId = Address.personId;
