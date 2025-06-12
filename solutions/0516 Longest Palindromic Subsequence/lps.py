@@ -8,7 +8,7 @@ def longest_palindromic_subsequence(s):
     for length in range(2, n + 1):
         for start in range(n - length + 1):
             end = start + length - 1
-            
+
             if s[start] == s[end]:
                 table[start][end] = table[start + 1][end - 1] + 2
             else:

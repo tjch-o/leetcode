@@ -1,22 +1,22 @@
-def backtrack(candidates, target, ptr, curr, acc, res):
-    if curr == target:
-        res.append(acc)
+def backtrack(nums, target, start, curr, res):
+    if target == 0:
+        res.append(curr[:])
         return
 
-    for i in range(ptr, len(candidates)):
-        if i > ptr and candidates[i] == candidates[i - 1]:
-            continue
-
-        if curr + candidates[i] > target:
+    for i in range(start, len(nums)):
+        if nums[i] > target:
             break
 
-        backtrack(
-            candidates, target, i + 1, curr + candidates[i], acc + [candidates[i]], res
-        )
+        if i > start and nums[i] == nums[i - 1]:
+            continue
+
+        curr.append(nums[i])
+        backtrack(nums, target - nums[i], i + 1, curr, res)
+        curr.pop()
 
 
-def combination_sum(candidates, target):
+def combination_sum(nums, target):
+    nums.sort()
     res = []
-    candidates.sort()
-    backtrack(candidates, target, 0, 0, [], res)
+    backtrack(nums, target, 0, [], res)
     return res

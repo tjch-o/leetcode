@@ -9,7 +9,7 @@ def can_place_flowers(flowerbed, n):
         if flowerbed[i] == 0:
             is_left_empty = i == 0 or flowerbed[i - 1] == 0
             is_right_empty = i == m - 1 or flowerbed[i + 1] == 0
-            
+
             if is_left_empty and is_right_empty:
                 flowerbed[i] = 1
                 count -= 1

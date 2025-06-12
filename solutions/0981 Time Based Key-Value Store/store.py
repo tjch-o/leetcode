@@ -1,32 +1,29 @@
 class TimeMap:
     def __init__(self):
-        self.dict = {}
+        self.cache = {}
 
     def set(self, key, value, timestamp):
-        if key not in self.dict:
-            self.dict[key] = []
-        self.dict[key].append((timestamp, value))
+        if key not in self.cache:
+            self.cache[key] = []
+        self.cache[key].append((value, timestamp))
 
     def get(self, key, timestamp):
-        if key not in self.dict or not self.dict[key]:
+        if key not in self.cache:
             return ""
 
-        timestamps = self.dict[key]
-        highest = None
-        start = 0
-        end = len(timestamps) - 1
+        timestamps = self.cache[key]
+        highest = -1
+        left, right = 0, len(timestamps)
 
-        while start <= end:
-            middle = start + (end - start) // 2
+        while left < right:
+            mid = left + (right - left) // 2
 
-            if timestamps[middle][0] == timestamp:
-                return timestamps[middle][1]
-            elif timestamps[middle][0] < timestamp:
-                highest = timestamps[middle][1]
-                start = middle + 1
+            if timestamps[mid][1] <= timestamp:
+                highest = timestamps[mid][0]
+                left = mid + 1
             else:
-                end = middle - 1
+                right = mid
 
-        if not highest:
+        if highest == -1:
             return ""
         return highest

@@ -10,7 +10,7 @@ class Interval(object):
 def min_meeting_rooms(intervals):
     n = len(intervals)
     intervals.sort(key=lambda x: x.start)
-    heap = [(intervals[0].end)]
+    heap = [intervals[0].end]
     heapq.heapify(heap)
 
     for i in range(1, n):

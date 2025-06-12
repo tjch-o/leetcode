@@ -1,5 +1,6 @@
 import heapq
 
+
 def last_stone_weight(stones):
     # invert values for max heap
     stones = list(map(lambda x: -x, stones))

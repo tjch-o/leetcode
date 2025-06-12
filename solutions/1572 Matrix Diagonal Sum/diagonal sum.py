@@ -1,5 +1,6 @@
 from math import floor
 
+
 def diagonal_sum(mat):
     # we know the matrix given is square
     # case 1 is mat is order n where n is odd that is when we remove the middle

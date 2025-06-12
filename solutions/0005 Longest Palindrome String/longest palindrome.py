@@ -1,7 +1,7 @@
 def longest_palindrome(s):
     if not s or len(s) == 1:
         return s
-    
+
     n = len(s)
     table = [[False for _ in range(n)] for _ in range(n)]
     max_l = 1
@@ -16,5 +16,5 @@ def longest_palindrome(s):
                 table[i][j] = True
                 if j - i + 1 > max_l:
                     max_l = j - i + 1
-                    longest = s[i: j + 1]
+                    longest = s[i : j + 1]
     return longest

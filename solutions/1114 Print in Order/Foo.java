@@ -15,7 +15,6 @@ class Foo {
             condition.await();
         }
         
-        // printFirst.run() outputs "first"
         printFirst.run();
         step = 2;
         condition.signalAll();
@@ -29,7 +28,6 @@ class Foo {
             condition.await();
         }
         
-        // printSecond.run() outputs "second"
         printSecond.run();
         step = 3;
         condition.signalAll();
@@ -43,7 +41,6 @@ class Foo {
             condition.await();
         }
 
-        // printThird.run() outputs "third"
         printThird.run();
         condition.signalAll();
         lock.unlock();

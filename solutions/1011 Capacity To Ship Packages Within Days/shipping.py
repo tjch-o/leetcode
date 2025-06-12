@@ -1,26 +1,24 @@
-def can_ship(weights, x, days):
-    count = 1
+def can_ship_within_n_days(weights, limit, n):
     curr = 0
+    days = 1
 
     for w in weights:
-        if curr + w > x:
-            count += 1
+        if curr + w > limit:
+            days += 1
             curr = 0
 
-            if count > days:
-                return False
         curr += w
-    return True
+    return days <= n
 
 
-def ship_within_days(weights, days):
-    start = max(weights)
-    end = sum(weights)
+def ship_within_days(weights, n):
+    left, right = max(weights), sum(weights)
 
-    while start < end:
-        mid = start + (end - start) // 2
-        if can_ship(weights, mid, days):
-            end = mid
+    while left < right:
+        mid = left + (right - left) // 2
+
+        if can_ship_within_n_days(weights, mid, n):
+            right = mid
         else:
-            start = mid + 1
-    return start
+            left = mid + 1
+    return left

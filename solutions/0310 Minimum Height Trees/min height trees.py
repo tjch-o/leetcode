@@ -32,4 +32,3 @@ def find_min_height_trees(n, edges):
                 if degrees[neighbour] == 1:
                     leaves.append(neighbour)
     return list(leaves)
-

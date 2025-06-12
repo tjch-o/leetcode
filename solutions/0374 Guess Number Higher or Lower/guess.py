@@ -1,8 +1,8 @@
 def guess_number(n):
     start = 1
     end = n
-    
-    while (True):
+
+    while True:
         middle = start + (end - start) // 2
         if guess(middle) == 0:
             return middle

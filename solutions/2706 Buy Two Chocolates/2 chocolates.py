@@ -1,5 +1,6 @@
 import heapq
 
+
 def buy_choco(prices, money):
     leftover = money
     k = 2
@@ -7,7 +8,7 @@ def buy_choco(prices, money):
 
     for _ in range(k):
         leftover -= heapq.heappop(prices)
-    
+
     if leftover < 0:
         return money
     return leftover

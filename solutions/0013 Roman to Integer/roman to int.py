@@ -1,26 +1,17 @@
 def roman_to_int(s):
-    values = {
-        "I": 1,
-        "V": 5,
-        "X": 10,
-        "L": 50,
-        "C": 100,
-        "D": 500,
-        "M": 1000,
-    }
+    mapping = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
 
-    special_rules = ["IV", "IX", "XL", "XC", "CD", "CM"]
+    subtraction_mapping = {"IV": 4, "IX": 9, "XL": 40, "XC": 90, "CD": 400, "CM": 900}
+
     n = len(s)
-    start = 0
-    result = 0
+    res = 0
+    i = 0
 
-    while start < n:
-        window = s[start : start + 2]
-
-        if window in special_rules:
-            result += values[window[1]] - values[window[0]]
-            start += 2
+    while i < n:
+        if s[i : i + 2] in subtraction_mapping:
+            res += subtraction_mapping[s[i : i + 2]]
+            i += 2
         else:
-            result += values[window[0]]
-            start += 1
-    return result
+            res += mapping[s[i]]
+            i += 1
+    return res

@@ -20,7 +20,7 @@ def compressed_string(word):
         else:
             result += str(curr_prefix) + prev
             curr_prefix = 1
-    
+
     prev = curr
     result += str(curr_prefix) + prev
     return result

@@ -3,7 +3,7 @@ def max_subarray(nums):
         return 0
     elif len(nums) == 1:
         return nums[0]
-    
+
     max_ending_at_pos = nums[0]
     curr_max = nums[0]
 

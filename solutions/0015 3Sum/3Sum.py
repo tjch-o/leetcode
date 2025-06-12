@@ -2,7 +2,7 @@ def three_sum(nums):
     n = len(nums)
     result = set()
     nums.sort()
-    
+
     for i in range(n):
         if nums[i] > 0:
             break

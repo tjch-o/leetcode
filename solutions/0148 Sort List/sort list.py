@@ -3,6 +3,7 @@ class ListNode:
         self.val = val
         self.next = next
 
+
 def get_middle(head):
     slow = head
     fast = head
@@ -17,6 +18,7 @@ def get_middle(head):
         prev.next = None
     return slow
 
+
 def merge(l1, l2):
     # avoid the need to create the head specifically
     dummy = ListNode()
@@ -30,7 +32,7 @@ def merge(l1, l2):
             curr.next = l2
             l2 = l2.next
         curr = curr.next
-    
+
     if not l1:
         curr.next = l2
     if not l2:
@@ -41,7 +43,7 @@ def merge(l1, l2):
 def sort_list(head):
     if not head or not head.next:
         return head
-    
+
     mid = get_middle(head)
     l1 = sort_list(head)
     l2 = sort_list(mid)

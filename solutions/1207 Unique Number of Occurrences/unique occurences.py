@@ -3,7 +3,7 @@ def unique_occurences(arr):
     for num in arr:
         if num not in table:
             table[num] = arr.count(num)
-            
+
     seen = {}
     for count in table.values():
         if count not in seen:

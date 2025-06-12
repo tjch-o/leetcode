@@ -1,16 +1,15 @@
-def merge_alternatively(word1, word2):
-    if word1 and not word2:
-        return word1
-    elif word2 and not word1:
-        return word2
-    else:
-        length_shorter_word = len(word1) if len(word1) <= len(word2) else len(word2)
-        result = ""
+def merge_alternatively(w1, w2):
+    if not w1 and not w2:
+        return ""
 
-        for i in range(length_shorter_word):
-            result += word1[i]
-            result += word2[i]
+    n1, n2 = len(w1), len(w2)
+    longer_s = w1 if n1 > n2 else w2
+    res = ""
 
-        result += word1[length_shorter_word:]
-        result += word2[length_shorter_word:]
-        return result
+    for i in range(min(n1, n2)):
+        res += w1[i]
+        res += w2[i]
+
+    for j in range(max(n1, n2) - min(n1, n2)):
+        res += longer_s[min(n1, n2) + j]
+    return res

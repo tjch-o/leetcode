@@ -5,9 +5,9 @@ def fizz_buzz(n):
         if i % 15 == 0:
             res.append("FizzBuzz")
         elif i % 3 == 0:
-            res.append('Fizz')
+            res.append("Fizz")
         elif i % 5 == 0:
-            res.append('Buzz')
+            res.append("Buzz")
         else:
             res.append(str(i))
     return res
