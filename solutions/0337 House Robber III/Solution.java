@@ -12,8 +12,8 @@ class Solution {
         int[] left = dfs(node.left);
         int[] right = dfs(node.right);
 
-        int maxIncluded = left[0] + node.val + right[0];
-        int maxExcluded = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
-        return new int[]{maxExcluded, maxIncluded};
+        int maxAmtIfRobbingCurr = left[0] + node.val + right[0];
+        int maxAmtIfNotRobbingCurr = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        return new int[] {maxAmtIfNotRobbingCurr, maxAmtIfRobbingCurr};
     }
 }

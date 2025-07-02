@@ -6,30 +6,36 @@ def within_grid(grid, i, j):
 
 
 def oranges_rotting(grid):
-    visited = [[False for _ in range(len(grid[0]))] for _ in range(len(grid))]
-    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    m, n = len(grid), len(grid[0])
+    time = [[float("inf") for _ in range(n)] for _ in range(m)]
     queue = deque()
-    max_minutes_before_rotten = 0
 
-    for i in range(len(grid)):
-        for j in range(len(grid[0])):
+    for i in range(m):
+        for j in range(n):
             if grid[i][j] == 2:
-                queue.append((i, j, 0))
+                time[i][j] = 0
+                queue.append((i, j))
+            elif grid[i][j] == 0:
+                time[i][j] = 0
+
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
     while queue:
-        i, j, minutes = queue.popleft()
-        max_minutes_before_rotten = max(max_minutes_before_rotten, minutes)
+        i, j = queue.popleft()
 
         for x, y in directions:
             ni, nj = i + x, j + y
 
-            if within_grid(grid, ni, nj) and grid[ni][nj] == 1 and not visited[ni][nj]:
-                grid[ni][nj] = 2
-                visited[ni][nj] = True
-                queue.append((ni, nj, minutes + 1))
+            if within_grid(grid, ni, nj):
+                if grid[ni][nj] == 1 and time[ni][nj] > time[i][j] + 1:
+                    time[ni][nj] = time[i][j] + 1
+                    queue.append((ni, nj))
 
-    for i in range(len(grid)):
-        for j in range(len(grid[0])):
-            if grid[i][j] == 1:
+    max_time = 0
+    for i in range(m):
+        for j in range(n):
+            if time[i][j] == float("inf"):
                 return -1
-    return max_minutes_before_rotten
+
+            max_time = max(max_time, time[i][j])
+    return max_time

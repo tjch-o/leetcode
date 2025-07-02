@@ -1,16 +1,16 @@
 def min_cost_tickets(days, costs):
-    travel_days = set(days)
-    travel_costs = [float("inf") for _ in range(days[-1] + 1)]
-    travel_costs[0] = 0
+    last_day = days[-1]
+    days_set = set(days)
+    table = [float("inf") for _ in range(last_day + 1)]
+    table[0] = 0
 
-    for i in range(1, days[-1] + 1):
-        if i not in travel_days:
-            travel_costs[i] = travel_costs[i - 1]
+    for i in range(1, last_day + 1):
+        if i not in days_set:
+            table[i] = table[i - 1]
         else:
-            travel_costs[i] = min(
-                travel_costs[i],
-                travel_costs[max(0, i - 1)] + costs[0],
-                travel_costs[max(0, i - 7)] + costs[1],
-                travel_costs[max(0, i - 30)] + costs[2],
+            table[i] = min(
+                table[max(0, i - 1)] + costs[0],
+                table[max(0, i - 7)] + costs[1],
+                table[max(0, i - 30)] + costs[2],
             )
-    return travel_costs[days[-1]]
+    return table[last_day]
