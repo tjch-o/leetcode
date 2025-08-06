@@ -1,16 +1,16 @@
 def jump(nums):
     n = len(nums)
-    curr_max = 0
-    next_max = 0
     count = 0
+    furthest = 0
+    furthest_from_curr_jump = 0
 
     for i in range(n - 1):
-        next_max = max(next_max, i + nums[i])
+        furthest = max(furthest, i + nums[i])
 
-        if i == curr_max:
-            curr_max = next_max
+        if i == furthest_from_curr_jump:
+            furthest_from_curr_jump = furthest
             count += 1
 
-        if i == n - 1:
-            break
+            if furthest_from_curr_jump >= n - 1:
+                break
     return count

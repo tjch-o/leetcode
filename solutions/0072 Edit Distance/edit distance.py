@@ -1,8 +1,8 @@
-def min_distance(word_1, word_2):
-    if word_1 == word_2:
+def min_distance(w1, w2):
+    if w1 == w2:
         return 0
 
-    m, n = len(word_1), len(word_2)
+    m, n = len(w1), len(w2)
     table = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
 
     for i in range(m + 1):
@@ -13,7 +13,7 @@ def min_distance(word_1, word_2):
 
     for i in range(1, m + 1):
         for j in range(1, n + 1):
-            if word_1[i - 1] == word_2[j - 1]:
+            if w1[i - 1] == w2[j - 1]:
                 table[i][j] = table[i - 1][j - 1]
             else:
                 table[i][j] = min(

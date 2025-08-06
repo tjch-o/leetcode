@@ -2,18 +2,18 @@ from collections import defaultdict
 
 
 def character_replacement(s, k):
-    counts = defaultdict(int)
-    max_count = 0
-    max_l = 0
-    start = 0
+    n = len(s)
+    freq = defaultdict(int)
+    left = 0
+    max_count, max_length = 0, 0
 
-    for i, c in enumerate(s):
-        counts[c] += 1
-        max_count = max(max_count, counts[c])
+    for i in range(n):
+        freq[s[i]] += 1
+        max_count = max(max_count, freq[s[i]])
 
-        if i - start + 1 - max_count > k:
-            counts[s[start]] -= 1
-            start += 1
+        if (i - left + 1 - max_count) > k:
+            freq[s[left]] -= 1
+            left += 1
 
-        max_l = max(max_l, i - start + 1)
-    return max_l
+        max_length = max(max_length, i - left + 1)
+    return max_length

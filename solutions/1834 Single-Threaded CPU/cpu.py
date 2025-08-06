@@ -2,23 +2,26 @@ import heapq
 
 
 def get_order(tasks):
-    indexed_tasks = list(enumerate(tasks))
-    indexed_tasks.sort(key=lambda x: x[1][0])
+    n = len(tasks)
+    indexed_tasks = [(tasks[i], i) for i in range(n)]
+    indexed_tasks.sort(key=lambda x: x[0][0])
 
-    curr_time = 0
-    i = 0
     heap = []
+    heapq.heapify(heap)
+    ptr = 0
+    curr_time = 0
     res = []
 
-    while len(res) < len(tasks):
-        while i < len(tasks) and indexed_tasks[i][1][0] <= curr_time:
-            heapq.heappush(heap, (indexed_tasks[i][1][1], indexed_tasks[i][0]))
-            i += 1
+    while len(res) < n:
+        while ptr < n and indexed_tasks[ptr][0][0] <= curr_time:
+            processing_time, index = indexed_tasks[ptr][0][1], indexed_tasks[ptr][1]
+            heapq.heappush(heap, (processing_time, index))
+            ptr += 1
 
         if heap:
-            pt, idx = heapq.heappop(heap)
-            curr_time += pt
+            processing_t, idx = heapq.heappop(heap)
+            curr_time += processing_t
             res.append(idx)
         else:
-            curr_time = indexed_tasks[i][1][0]
+            curr_time = indexed_tasks[ptr][0][0]
     return res

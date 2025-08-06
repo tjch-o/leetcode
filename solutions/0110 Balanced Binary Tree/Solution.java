@@ -3,10 +3,10 @@ class Solution {
         if (root == null) {
             return true;
         }
-        return isBalanced(root.left) && heightDifferenceWithinOne(root) && isBalanced(root.right);
+        return isBalanced(root.left) && heightDiffersByOne(root) && isBalanced(root.right);
     }
 
-    public boolean heightDifferenceWithinOne(TreeNode node) {
+    public boolean heightDiffersByOne(TreeNode node) {
         return Math.abs(getHeight(node.left) - getHeight(node.right)) <= 1;
     }
 

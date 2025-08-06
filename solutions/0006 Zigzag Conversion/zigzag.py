@@ -1,25 +1,25 @@
 def convert(s, num_rows):
-    if len(s) <= 1 or num_rows == 1:
+    if num_rows == 1:
         return s
 
-    levels = [[] for _ in range(num_rows)]
-    curr = 0
-    going_down = True
+    rows = [[] for _ in range(num_rows)]
+    ptr = 0
+    i = 0
 
-    for c in s:
-        levels[curr].append(c)
+    while i < len(s):
+        if ptr == 0:
+            while i < len(s) and ptr < num_rows - 1:
+                rows[ptr].append(s[i])
+                ptr += 1
+                i += 1
 
-        if curr == num_rows - 1:
-            going_down = False
-        elif curr == 0:
-            going_down = True
-
-        if going_down == True:
-            curr += 1
-        else:
-            curr -= 1
+        if ptr == num_rows - 1:
+            while i < len(s) and ptr > 0:
+                rows[ptr].append(s[i])
+                ptr -= 1
+                i += 1
 
     res = []
-    for level in levels:
-        res.append("".join(level))
+    for row in rows:
+        res.append("".join(row))
     return "".join(res)

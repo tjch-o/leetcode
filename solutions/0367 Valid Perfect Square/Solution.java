@@ -1,23 +1,20 @@
 class Solution {
     public boolean isPerfectSquare(int num) {
-        if (num == 0 || num == 1) {
-            return true;
-        }
+        int start = 1;
+        int end = (int) Math.sqrt(num) + 1;
 
-        long low = 1;
-        long high = num;
-        while (low <= high) {
-            long middle = low + (high - low) / 2;
-            long square = middle * middle;
-            if (square == num) {
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            int currSquare = mid * mid;
+
+            if (currSquare == num) {
                 return true;
-            } else if (square > num) {
-                high = middle - 1;
+            } else if (currSquare > num) {
+                end = mid - 1;
             } else {
-                low = middle + 1;
+                start = mid + 1;
             }
         }
-
         return false;
     }
 }

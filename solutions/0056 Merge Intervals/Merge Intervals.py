@@ -1,4 +1,4 @@
-def does_not_overlap(i1, i2):
+def no_overlap(i1, i2):
     return i1[1] < i2[0] or i2[1] < i1[0]
 
 
@@ -7,13 +7,16 @@ def merge_interval(i1, i2):
 
 
 def merge(intervals):
-    result = []
-
-    intervals.sort(key=lambda x: x[0])
+    intervals.sort(key=lambda x: (x[0], x[1]))
+    stack = []
 
     for interval in intervals:
-        if not result or does_not_overlap(result[-1], interval):
-            result.append(interval)
+        if not stack or no_overlap(stack[-1], interval):
+            stack.append(interval)
         else:
-            result[-1] = merge_interval(result[-1], interval)
-    return result
+            curr = interval
+            while stack and not no_overlap(stack[-1], curr):
+                merged_interval = merge_interval(stack.pop(), curr)
+                curr = merged_interval
+            stack.append(curr)
+    return stack

@@ -14,7 +14,8 @@ def min_meeting_rooms(intervals):
     heapq.heapify(heap)
 
     for i in range(1, n):
-        if intervals[i].start >= heap[0]:
+        earliest_end = heap[0]
+        if intervals[i].start >= earliest_end:
             heapq.heappop(heap)
 
         heapq.heappush(heap, intervals[i].end)

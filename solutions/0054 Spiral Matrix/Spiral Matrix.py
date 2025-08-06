@@ -1,37 +1,24 @@
 def spiral_order(matrix):
     m, n = len(matrix), len(matrix[0])
-    up, down = 0, m - 1
-    left, right = 0, n - 1
-    result = []
-    visited = set()
+    left, right, up, down = 0, n - 1, 0, m - 1
+    res = []
 
     while left <= right and up <= down:
-        for j in range(left, right + 1):
-            if (up, j) not in visited:
-                result.append(matrix[up][j])
-                visited.add((up, j))
-
+        for i in range(left, right + 1):
+            res.append(matrix[up][i])
         up += 1
 
-        for i in range(up, down + 1):
-            if (i, right) not in visited:
-                result.append(matrix[i][right])
-                visited.add((i, right))
-
+        for j in range(up, down + 1):
+            res.append(matrix[j][right])
         right -= 1
 
-        for j in range(right, left - 1, -1):
-            if (down, j) not in visited:
-                result.append(matrix[down][j])
-                visited.add((down, j))
+        if up <= down:
+            for i in range(right, left - 1, -1):
+                res.append(matrix[down][i])
+            down -= 1
 
-        down -= 1
-
-        for i in range(down, up - 1, -1):
-            if (i, left) not in visited:
-                result.append(matrix[i][left])
-                visited.add((i, left))
-
-        left += 1
-
-    return result
+        if left <= right:
+            for j in range(down, up - 1, -1):
+                res.append(matrix[j][left])
+            left += 1
+    return res

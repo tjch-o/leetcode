@@ -1,13 +1,12 @@
 def length_of_longest_substring(s):
-    n = len(s)
-    curr = ""
-    max_l = 0
+    last_seen = {}
+    start = 0
+    max_length = 0
 
-    for i in range(n):
-        if s[i] in curr:
-            j = curr.index(s[i])
-            curr = curr[j + 1 :]
+    for i in range(len(s)):
+        if s[i] in last_seen:
+            start = max(start, last_seen[s[i]] + 1)
 
-        curr += s[i]
-        max_l = max(max_l, len(curr))
-    return max_l
+        last_seen[s[i]] = i
+        max_length = max(max_length, i - start + 1)
+    return max_length

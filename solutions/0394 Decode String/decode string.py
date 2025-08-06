@@ -1,18 +1,16 @@
 def decode_string(s):
-    num = 0
-    curr = ""
     stack = []
+    curr, num = "", 0
 
-    for i in range(len(s)):
-        if s[i].isdigit():
-            num = num * 10 + int(s[i])
-        elif s[i] == "[":
-            stack.append((num, curr))
-            num = 0
-            curr = ""
-        elif s[i] == "]":
-            prev_num, prev = stack.pop()
-            curr = prev + prev_num * curr
+    for c in s:
+        if c.isdigit():
+            num = num * 10 + int(c)
+        elif c == "[":
+            stack.append((curr, num))
+            curr, num = "", 0
+        elif c == "]":
+            prev_c, prev_n = stack.pop()
+            curr = prev_c + curr * prev_n
         else:
-            curr += s[i]
+            curr += c
     return curr

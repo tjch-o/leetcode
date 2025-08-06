@@ -4,18 +4,22 @@
  * @return {Array}
  */
 var flat = function (arr, n) {
-    return flatten(arr, 0, n);
-};
+    if (n == 0) {
+        return arr.slice();
+    }
 
-const flatten = (arr, depth, n) => {
-    let result = [];
+    const res = [];
 
-    for (const elem of arr) {
-        if (Array.isArray(elem) && depth < n) {
-            result.push(...flatten(elem, depth + 1, n));
+    for (let i = 0; i < arr.length; i += 1) {
+        if (Array.isArray(arr[i]) && n > 0) {
+            const flattened = flat(arr[i], n - 1);
+
+            for (const elem of flattened) {
+                res.push(elem);
+            }
         } else {
-            result.push(elem);
+            res.push(arr[i]);
         }
     }
-    return result;
-}
+    return res;
+};

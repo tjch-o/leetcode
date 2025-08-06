@@ -1,36 +1,31 @@
 import heapq
 
 
-def is_same_three_consecutive(arr, c):
-    return len(arr) >= 2 and arr[-1] == arr[-2] and arr[-1] == c
+def consecutive_letters(arr, c):
+    return len(arr) >= 2 and arr[-1] == c and arr[-2] == c
 
 
 def longest_diverse_string(a, b, c):
-    max_heap = [(-a, "a"), (-b, "b"), (-c, "c")]
-    heap = [(count, c) for count, c in max_heap if count != 0]
+    res = []
+    counts = [(-a, "a"), (-b, "b"), (-c, "c")]
+    heap = list(filter(lambda x: x[0] != 0, counts))
     heapq.heapify(heap)
 
-    res = []
-
     while heap:
-        count, c = heapq.heappop(heap)
+        count, curr_c = heapq.heappop(heap)
 
-        if not is_same_three_consecutive(res, c):
-            res.append(c)
-            count += 1
-
-            if count != 0:
-                heapq.heappush(heap, (count, c))
+        if not consecutive_letters(res, curr_c):
+            res.append(curr_c)
+            if count + 1 < 0:
+                heapq.heappush(heap, (count + 1, curr_c))
         else:
-            if not heap:
-                break
+            if heap:
+                next_count, next_c = heapq.heappop(heap)
 
-            next_count, next_c = heapq.heappop(heap)
-            res.append(next_c)
-            next_count += 1
+                if next_count < 0:
+                    res.append(next_c)
+                    if next_count + 1 < 0:
+                        heapq.heappush(heap, (next_count + 1, next_c))
 
-            if next_count != 0:
-                heapq.heappush(heap, (next_count, next_c))
-
-            heapq.heappush(heap, (count, c))
+                heapq.heappush(heap, (count, curr_c))
     return "".join(res)

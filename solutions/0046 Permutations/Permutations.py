@@ -1,21 +1,21 @@
-def backtrack(nums, d, curr, res, visited):
-    if d == len(nums):
-        res.append([x for x in curr])
-        return res
+def backtrack(nums, curr, res, used):
+    if len(curr) == len(nums):
+        res.append(curr[:])
+        return
 
-    for i, num in enumerate(nums):
-        if visited[i]:
+    for i in range(len(nums)):
+        if i in used:
             continue
 
-        curr.append(num)
-        visited[i] = True
-        backtrack(nums, d + 1, curr, res, visited)
+        used.add(i)
+        curr.append(nums[i])
+        backtrack(nums, curr, res, used)
         curr.pop()
-        visited[i] = False
+        used.remove(i)
 
 
 def permute(nums):
     res = []
-    visited = [False for _ in range(len(nums))]
-    backtrack(nums, 0, [], res, visited)
+    used = set()
+    backtrack(nums, [], res, used)
     return res
